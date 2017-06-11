@@ -1,7 +1,6 @@
 package com.friday;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
 
 import java.io.IOException;
 
@@ -10,8 +9,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class ModelTest {
 
-    @Test
-    public void should_get() throws IOException {
+        public void should_get() throws IOException {
 
         String content = "{\n" +
                 "  \"message\": \"Test Message\",\n" +
