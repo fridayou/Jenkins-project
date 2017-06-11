@@ -1,0 +1,80 @@
+group 'com.friday'
+version '1.0-SNAPSHOT'
+
+// After executing gradle -Pparam1=dev the value of myProp will be dev
+def myProp = project.hasProperty('param1') ?
+        project.getProperty('param1') : null
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+//apply plugin: 'spring-boot' // this is plugin is only for org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
+apply plugin: 'org.flywaydb.flyway'
+
+
+buildscript {
+    ext {
+        springversion =  '1.4.2.RELEASE'
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spring.io/libs-snapshot' }
+        maven { url 'https://plugins.gradle.org/m2/'}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springversion")
+        classpath("gradle.plugin.com.boxfuse.client:flyway-release:4.2.0")
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
+}
+
+configurations {
+    compile.exclude module: 'spring-boot-starter-logging'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/libs-snapshot' }
+    maven { url 'https://plugins.gradle.org/m2/'}
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:$springversion")
+//    compile("org.springframework.boot:spring-boot-starter-logging:$springversion")
+    compile("org.springframework.boot:spring-boot-starter-log4j2:$springversion")
+//    compile("com.fasterxml.jackson.core:jackson-databind:2.7.4")
+    compile("org.apache.commons.io:commonsIO:2.5.0")
+
+    compile("org.flywaydb:flyway-core:4.1.2")
+    compile("mysql:mysql-connector-java:5.1.17")
+
+    compile("io.springfox:springfox-swagger2:2.2.2")
+    compile("io.springfox:springfox-swagger-ui:2.2.2")
+
+    runtime("com.h2database:h2:1.4.192")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test:$springversion")
+}
+
+flyway {
+    url = 'jdbc:mysql://localhost:3306/cloudfleet?allowMultiQueries=true&useUnicode=true&charaterEncoding=UTF-8&serverTimezone=CST'
+    user = 'root'
+    password = 'root'
+}

@@ -1,0 +1,24 @@
+#logging:
+#  level:
+#    #ROOT: DEBUG
+#    org.springframework.web: ERROR
+#    com.friday: DEBUG
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+#    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+#  file: /users/ppou/debug-two.log
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    validationQuery: SELECT 1
+    url: jdbc:mysql://localhost:3306/cloudfleet?allowMultiQueries=true&useUnicode=true&charaterEncoding=UTF-8&serverTimezone=CST
+    username: root
+    password: root
+
+#flyway:
+#  enabled: true
+
+server:
+  port: 8080
+  context-path: /friday
