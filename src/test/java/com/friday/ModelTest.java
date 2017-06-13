@@ -47,8 +47,6 @@ public class ModelTest {
 
        String test = mapper.writeValueAsString(details);
 
-       assertNotNull(test);
-
     }
 
 }
