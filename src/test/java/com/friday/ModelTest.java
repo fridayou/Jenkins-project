@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertNotNull;
-
 
 public class ModelTest {
 
