@@ -1,13 +1,15 @@
 package com.friday;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Test;
 
 import java.io.IOException;
 
 
 public class ModelTest {
 
-        public void should_get() throws IOException {
+    @Test
+    public void should_get() throws IOException {
 
         String content = "{\n" +
                 "  \"message\": \"Test Message\",\n" +
@@ -41,9 +43,9 @@ public class ModelTest {
 
         ObjectMapper mapper = new ObjectMapper();
 
-       Details details = mapper.readValue(content, Details.class);
+        Details details = mapper.readValue(content, Details.class);
 
-       String test = mapper.writeValueAsString(details);
+        String test = mapper.writeValueAsString(details);
 
     }
 
